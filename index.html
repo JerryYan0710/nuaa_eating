@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#ff6b35" />
+  <meta name="description" content="南航er的食堂&夜宵随机选择神器 —— 今天吃啥？" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <title>这顿吃啥 🍜</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ========== 主页面：抽取 ========== -->
+  <section id="page-home" class="page active">
+    <header class="app-header">
+      <h1 class="app-title">🍱 这顿吃啥</h1>
+      <p class="app-subtitle">南航er专属 · 告别选择困难</p>
+    </header>
+
+    <main class="wheel-area">
+      <!-- 滚动显示框 -->
+      <div class="result-frame">
+        <div id="wheel-display" class="wheel-display">
+          <span class="placeholder">点击下方按钮</span>
+        </div>
+        <div id="result-detail" class="result-detail hidden">
+          <span id="result-category" class="tag"></span>
+          <span id="result-tags" class="tags"></span>
+        </div>
+      </div>
+
+      <!-- 抽取按钮 -->
+      <button id="btn-spin" class="spin-btn" aria-label="开始随机">
+        <span class="spin-btn-text">今 天 吃 啥 ？</span>
+      </button>
+
+      <!-- 筛选快捷入口 -->
+      <div class="filter-bar">
+        <button class="chip active" data-filter="all">全部</button>
+        <button class="chip" data-filter="食堂">🍚 食堂</button>
+        <button class="chip" data-filter="夜市">🏮 夜市</button>
+        <button class="chip" data-filter="外卖">🛵 外卖</button>
+      </div>
+    </main>
+
+    <!-- 底部导航 -->
+    <nav class="tab-bar">
+      <button class="tab-item active" data-target="page-home">
+        <span class="tab-icon">🎲</span><span class="tab-label">抽取</span>
+      </button>
+      <button class="tab-item" data-target="page-manage">
+        <span class="tab-icon">📚</span><span class="tab-label">店铺</span>
+      </button>
+      <button class="tab-item" data-target="page-settings">
+        <span class="tab-icon">⚙️</span><span class="tab-label">设置</span>
+      </button>
+    </nav>
+  </section>
+
+  <!-- ========== 管理页面 ========== -->
+  <section id="page-manage" class="page">
+    <header class="app-header">
+      <h2 class="app-title small">📚 店铺管理</h2>
+      <button id="btn-add-shop" class="fab" aria-label="添加店铺">+</button>
+    </header>
+
+    <div class="manage-toolbar">
+      <input id="search-input" type="text" placeholder="🔍 搜索店铺..." />
+      <div class="filter-bar">
+        <button class="chip active" data-mfilter="all">全部</button>
+        <button class="chip" data-mfilter="食堂">🍚 食堂</button>
+        <button class="chip" data-mfilter="夜市">🏮 夜市</button>
+        <button class="chip" data-mfilter="外卖">🛵 外卖</button>
+      </div>
+    </div>
+
+    <ul id="shop-list" class="shop-list"></ul>
+
+    <nav class="tab-bar">
+      <button class="tab-item" data-target="page-home">
+        <span class="tab-icon">🎲</span><span class="tab-label">抽取</span>
+      </button>
+      <button class="tab-item active" data-target="page-manage">
+        <span class="tab-icon">📚</span><span class="tab-label">店铺</span>
+      </button>
+      <button class="tab-item" data-target="page-settings">
+        <span class="tab-icon">⚙️</span><span class="tab-label">设置</span>
+      </button>
+    </nav>
+  </section>
+
+  <!-- ========== 设置页面 ========== -->
+  <section id="page-settings" class="page">
+    <header class="app-header">
+      <h2 class="app-title small">⚙️ 设置</h2>
+    </header>
+
+    <div class="settings-list">
+      <div class="setting-item">
+        <span>🎨 深色模式</span>
+        <label class="switch">
+          <input type="checkbox" id="toggle-dark" />
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="setting-item">
+        <span>🔁 重置为默认数据</span>
+        <button id="btn-reset" class="btn-danger">重置</button>
+      </div>
+      <div class="setting-item">
+        <span>📤 导出数据</span>
+        <button id="btn-export" class="btn-secondary">导出 JSON</button>
+      </div>
+      <div class="setting-item">
+        <span>📥 导入数据</span>
+        <button id="btn-import" class="btn-secondary">导入 JSON</button>
+        <input type="file" id="import-file" accept=".json" hidden />
+      </div>
+      <div class="setting-item info">
+        <p>v0.1.0 · 这顿吃啥</p>
+        <p>数据保存在浏览器本地 LocalStorage</p>
+      </div>
+    </div>
+
+    <nav class="tab-bar">
+      <button class="tab-item" data-target="page-home">
+        <span class="tab-icon">🎲</span><span class="tab-label">抽取</span>
+      </button>
+      <button class="tab-item" data-target="page-manage">
+        <span class="tab-icon">📚</span><span class="tab-label">店铺</span>
+      </button>
+      <button class="tab-item active" data-target="page-settings">
+        <span class="tab-icon">⚙️</span><span class="tab-label">设置</span>
+      </button>
+    </nav>
+  </section>
+
+  <!-- ========== 添加/编辑店铺弹窗 ========== -->
+  <div id="modal-shop" class="modal hidden">
+    <div class="modal-content">
+      <h3 id="modal-title">添加店铺</h3>
+      <form id="shop-form">
+        <label>店铺名称
+          <input type="text" name="name" required maxlength="30" placeholder="如：二食堂三楼黄焖鸡" />
+        </label>
+        <label>分类
+          <select name="category" required>
+            <option value="食堂">🍚 食堂</option>
+            <option value="夜市">🏮 夜市</option>
+            <option value="外卖">🛵 外卖</option>
+          </select>
+        </label>
+        <label>子分类（选填，如具体食堂/夜市名称）
+          <input type="text" name="subCategory" maxlength="20" placeholder="如：二食堂 / 胜太路夜市" />
+        </label>
+        <label>标签（用逗号分隔，如：辣,下饭,量大）
+          <input type="text" name="tags" placeholder="辣, 下饭, 便宜" />
+        </label>
+        <label>权重（越高越容易被抽到，1-5）
+          <input type="range" name="weight" min="1" max="5" value="3" />
+          <span id="weight-display">3</span>
+        </label>
+        <div class="modal-actions">
+          <button type="button" id="btn-cancel-shop" class="btn-secondary">取消</button>
+          <button type="submit" class="btn-primary">保存</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========== 确认弹窗 ========== -->
+  <div id="modal-confirm" class="modal hidden">
+    <div class="modal-content small">
+      <p id="confirm-message">确定要删除吗？</p>
+      <div class="modal-actions">
+        <button id="btn-confirm-cancel" class="btn-secondary">取消</button>
+        <button id="btn-confirm-ok" class="btn-danger">确定</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== 底部安全区占位 ========== -->
+  <div class="bottom-spacer"></div>
+
+  <!-- JS 加载（顺序关键，?v= 用于绕过缓存） -->
+  <script src="js/utils.js?v=2"></script>
+  <script src="js/data.js?v=2"></script>
+  <script src="js/storage.js?v=2"></script>
+  <script src="js/app.js?v=2"></script>
+  <script>
+    // 注册 Service Worker（PWA 离线可用）
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js').catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>

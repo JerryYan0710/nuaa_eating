@@ -1,0 +1,24 @@
+{
+  "name": "这顿吃啥 - 南航er食堂随机",
+  "short_name": "这顿吃啥",
+  "description": "告别选择困难！随机抽取南航食堂、夜市、外卖",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#fff5f0",
+  "theme_color": "#ff6b35",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
